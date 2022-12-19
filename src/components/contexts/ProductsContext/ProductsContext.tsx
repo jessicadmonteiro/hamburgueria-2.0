@@ -64,6 +64,7 @@ export const AuthProductsProvider = ({ children }: iProductsContextProps) => {
           },
         });
         setProducts(response.data);
+
       } catch (error) {
         console.error(error);
       }

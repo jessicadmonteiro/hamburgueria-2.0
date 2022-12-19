@@ -8,7 +8,7 @@ import { ContexProducts } from "../contexts/ProductsContext/ProductsContext";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const { search, setSearch, setModalOpen } = useContext(ContexProducts);
+  const { search, setSearch, setModalOpen,cart} = useContext(ContexProducts);
   const navigate = useNavigate();
 
   function LogoutUser () {
@@ -33,6 +33,7 @@ function Header() {
             <img src={Search} alt="Search" />
           </span>
           <Img onClick={() =>{setModalOpen(true)}} src={Cart} alt="Cart" />
+          <button onClick={() =>{setModalOpen(true)}} >{cart.length}</button>
           <Img onClick={()=> LogoutUser()} src={Logout} alt="Logout" />
         </Container>
       </HeaderStyle>

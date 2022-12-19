@@ -34,7 +34,9 @@ export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
       const response = await api.post("/login ", data);
       window.localStorage.clear();
       window.localStorage.setItem("token", response.data.accessToken);
+
       setUser(response.data.user);
+
 
       navigate("/home");
       

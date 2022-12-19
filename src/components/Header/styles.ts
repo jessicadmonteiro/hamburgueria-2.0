@@ -66,6 +66,22 @@ export const Container = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
+
+  button{
+    width: 15px;
+    height: 15px;
+
+    font-size: 10px;
+    text-align: center;
+
+    border: transparent;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #27ae60;
+
+    margin-top: -12px;
+    margin-left: -25px;
+  }
 `;
 
 export const Img = styled.img`

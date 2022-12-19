@@ -8,8 +8,7 @@ import { Navigate} from "react-router-dom";
 
 function Home() {
   const {user} = useContext(ContextLogin)
-  const { productsFilter, search, setSearch, addItemToCart } = useContext(ContexProducts);
-
+  const { productsFilter, search, setSearch, addItemToCart} = useContext(ContexProducts);
 
   function removerSearch (setSearch: any) {
     setSearch("")
