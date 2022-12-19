@@ -7,8 +7,12 @@ import { ContextLogin } from "../../components/contexts/LoginContex/LoginContex"
 import { Navigate} from "react-router-dom";
 
 function Home() {
-  const {user} = useContext(ContextLogin)
-  const { productsFilter, search, setSearch, addItemToCart} = useContext(ContexProducts);
+  const {user, } = useContext(ContextLogin)
+  const { productsFilter, search, setSearch, loading, addItemToCart} = useContext(ContexProducts);
+
+  if (loading) {
+    return <div>Carregando...</div>
+  }
 
   function removerSearch (setSearch: any) {
     setSearch("")

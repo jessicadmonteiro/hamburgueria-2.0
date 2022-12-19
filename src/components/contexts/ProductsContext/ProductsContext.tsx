@@ -37,6 +37,7 @@ interface iProductsContext {
   IncrementCount(productId: any): void;
   DecrementCount(productId: any): void;
   valueTotal: number;
+  loading: any;
 }
 
 export const ContexProducts = createContext({} as iProductsContext);
@@ -46,6 +47,7 @@ export const AuthProductsProvider = ({ children }: iProductsContextProps) => {
   const [search, setSearch] = useState("");
   const [cart, setCart] = useState<iCart[]>([] as iCart[]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const productsFilter = products.filter(
     (item) =>
@@ -57,6 +59,11 @@ export const AuthProductsProvider = ({ children }: iProductsContextProps) => {
     async function getProducts() {
       const token = window.localStorage.getItem("token");
 
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+
       try {
         const response = await api.get("/products", {
           headers: {
@@ -67,6 +74,8 @@ export const AuthProductsProvider = ({ children }: iProductsContextProps) => {
 
       } catch (error) {
         console.error(error);
+      }finally {
+        setLoading(false);
       }
     }
     getProducts();
@@ -134,6 +143,7 @@ export const AuthProductsProvider = ({ children }: iProductsContextProps) => {
         RemoverAll,
         IncrementCount,
         DecrementCount,
+        loading,
       }}
     >
       {children}

@@ -37,7 +37,6 @@ export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
 
       setUser(response.data.user);
 
-
       navigate("/home");
       
     } catch (error) {

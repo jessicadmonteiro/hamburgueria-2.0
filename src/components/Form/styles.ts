@@ -23,18 +23,33 @@ export const ErrorForm = styled.span`
   color: #eb5757;
 
   margin-bottom: 10px;
-`
+`;
 
 export const LogoLogin = styled.div`
-  @media (max-width: 840px){
+  @media (max-width: 840px) {
     display: none;
   }
-
-`
+`;
 export const ContainerMobileLogin = styled.div`
 
   @media (max-width: 840px){
     display: columns;
+
+    span {
+      width: 50px;
+      img {
+      width: 30%;
+    }
+
+    }
+
+    p {
+      width: 80%;
+      height: 40px;
+
+      font-size: 12px;
+    }
+
   }
 
   @media (min-width: 841px){
@@ -51,4 +66,4 @@ export const ContainerMobileLogin = styled.div`
       font-size: 10px;
     }
   }
-`
+`;

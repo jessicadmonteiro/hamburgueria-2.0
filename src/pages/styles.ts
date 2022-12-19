@@ -53,6 +53,7 @@ export const ContainerForm = styled.div`
 
   @media (max-width: 840px) {
     width: 90%;
+    margin: auto;
   }
 `;
 
@@ -61,6 +62,7 @@ export const ContainerDiv = styled.div`
 
   @media (max-width: 840px) {
     width: 90%;
+    margin: auto;
   }
 
   @media (max-width: 374px) {
