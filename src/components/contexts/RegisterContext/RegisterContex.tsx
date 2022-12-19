@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { api } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface iRegisterContextProps {
     children: React.ReactNode;
@@ -29,10 +30,11 @@ export const AuthRegisterProvider = ({children}: iRegisterContextProps) => {
           setLoading(true);
           await api.post("/users", data);
 
+          toast.success("Cadastro realizado com sucesso!");
           navigate("/");
         } catch (error) {
-    
-          console.log(error)
+            toast.error("Ops! Algo deu errado")
+          
         } finally {
           setLoading(false);
         }

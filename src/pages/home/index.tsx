@@ -3,9 +3,11 @@ import { Ul, Quest } from "./styles";
 import { useContext} from "react";
 import { ContexProducts } from "../../components/contexts/ProductsContext/ProductsContext";
 import Cart from "../../components/Cart";
+import { ContextLogin } from "../../components/contexts/LoginContex/LoginContex";
+import { Navigate} from "react-router-dom";
 
 function Home() {
-  
+  const {user} = useContext(ContextLogin)
   const { productsFilter, search, setSearch, addItemToCart } = useContext(ContexProducts);
 
 
@@ -13,7 +15,7 @@ function Home() {
     setSearch("")
   }
 
-  return (
+  return user? (
     <>
       <Header />
       <Cart />
@@ -45,6 +47,8 @@ function Home() {
         ))}
       </Ul>
     </>
+  ): (
+    <Navigate to="/"/>
   );
 }
 
