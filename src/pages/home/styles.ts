@@ -18,7 +18,8 @@ export const Ul = styled.ul`
     border-radius: 5px;
 
     div {
-      width: 100%;
+      width: 250px;
+      max-width: 100%;
       height: 50%;
 
       display: flex;

@@ -3,15 +3,14 @@ interface iInput {
     id: string;
     label: string;
     type: string;
-    placeholder: string;
     register: {};
 }
 
-function Input({id, label, type, placeholder, register}: iInput) {
+function Input({id, label, type,  register}: iInput) {
   return (
     <Fieldset>
+      <input type={type} {...register} required={true}/>
       <label htmlFor={id}>{label}</label>
-      <input type={type} placeholder={placeholder} {...register} />
     </Fieldset>
   )
 }

@@ -48,6 +48,8 @@ export const ContainerMobileLogin = styled.div`
       height: 40px;
 
       font-size: 12px;
+
+      padding-top: -10px;
     }
 
   }

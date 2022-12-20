@@ -9,9 +9,10 @@ import {
   ContainerForm,
   ImgGroup,
 } from "../styles";
-import { ButtonGrey } from "../../styles/button";
-import { Link } from "react-router-dom";
 import { ContainerMobileLogin, LogoLogin } from "../../components/Form/styles";
+import { ButtonLink } from "../../styles/button";
+
+
 
 function Login() {
   return (
@@ -32,9 +33,9 @@ function Login() {
         <FormLogin />
         <div>
           <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
-          <ButtonGrey>
-            <Link to="register">Cadastrar</Link>
-          </ButtonGrey>
+      
+            <ButtonLink to="register">Cadastrar</ButtonLink>
+          
         </div>
       </ContainerForm>
       <ContainerDiv>

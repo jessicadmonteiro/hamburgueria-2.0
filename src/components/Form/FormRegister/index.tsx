@@ -50,7 +50,6 @@ function FormRegister() {
         label="Nome"
         type="text"
         id="name"
-        placeholder="Digite aqui seu nome"
         register={register("name")}
       />
       {errors.name?.message && <ErrorForm>{errors.name.message}</ErrorForm>}
@@ -59,7 +58,6 @@ function FormRegister() {
         label="Email"
         type="email"
         id="email"
-        placeholder="Digite aqui seu email"
         register={register("email")}
       />
       {errors.email?.message && <ErrorForm>{errors.email.message}</ErrorForm>}
@@ -68,7 +66,6 @@ function FormRegister() {
         label="Senha"
         type="password"
         id="password"
-        placeholder="Digite aqui sua senha"
         register={register("password")}
       />
       {errors.password?.message && <ErrorForm>{errors.password.message}</ErrorForm>}
@@ -77,7 +74,6 @@ function FormRegister() {
         label="Confirmar Senha"
         type="password"
         id="ConfirmPassword"
-        placeholder="Digite novamente sua senha"
         register={register("passwordConfirmation")}
       />
       {errors.passwordConfirmation?.message && (

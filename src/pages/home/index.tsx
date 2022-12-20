@@ -1,39 +1,48 @@
 import Header from "../../components/Header";
 import { Ul, Quest } from "./styles";
-import { useContext} from "react";
+import { useContext } from "react";
 import { ContexProducts } from "../../components/contexts/ProductsContext/ProductsContext";
 import Cart from "../../components/Cart";
+import { Navigate } from "react-router-dom";
 import { ContextLogin } from "../../components/contexts/LoginContex/LoginContex";
-import { Navigate} from "react-router-dom";
+import ImgSpinner from "../../assets/spinner.svg";
+import { ContainerSpinner, Spinner } from "../../styles/spinner";
 
 function Home() {
-  const {user, } = useContext(ContextLogin)
-  const { productsFilter, search, setSearch, loading, addItemToCart} = useContext(ContexProducts);
+  const { productsFilter, search, setSearch, addItemToCart } =
+    useContext(ContexProducts);
+  const { loading } = useContext(ContextLogin);
 
   if (loading) {
-    return <div>Carregando...</div>
+    return (
+      <ContainerSpinner>
+        <Spinner src={ImgSpinner} alt="" />
+      </ContainerSpinner>
+    );
   }
 
-  function removerSearch (setSearch: any) {
-    setSearch("")
+  function removerSearch(setSearch: any) {
+    setSearch("");
   }
 
-  return user? (
+  const token = window.localStorage.getItem("token");
+
+  return token ? (
     <>
       <Header />
       <Cart />
       {search !== "" && (
         <Quest>
           <div>
-          <h2>Resultados para:</h2>
-          <span>{search}</span>
+            <h2>Resultados para:</h2>
+            <span>{search}</span>
           </div>
-          <button onClick={() => removerSearch (setSearch)}>Limpar busca</button>
+          <button onClick={() => removerSearch(setSearch)}>Limpar busca</button>
         </Quest>
       )}
       <Ul>
         {productsFilter.map((item) => (
-          <li key={item.id} id={String(item.id)} >
+          <li key={item.id} id={String(item.id)}>
             <div>
               <img src={item.img} alt={item.name} />
             </div>
@@ -50,8 +59,8 @@ function Home() {
         ))}
       </Ul>
     </>
-  ): (
-    <Navigate to="/"/>
+  ) : (
+    <Navigate to="/" />
   );
 }
 

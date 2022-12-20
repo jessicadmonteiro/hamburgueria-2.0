@@ -4,10 +4,9 @@ export const BackgroundHeader = styled.header`
   height: 70px;
 
   display: flex;
- 
-  background: #f5f5f5;
 
-`
+  background: #f5f5f5;
+`;
 
 export const HeaderStyle = styled.div`
   width: 78%;
@@ -50,14 +49,12 @@ export const HeaderStyle = styled.div`
     img {
       width: 30px;
       height: 30px;
-
     }
   }
 
   @media (max-width: 729px) {
-
     span {
-      display: none;
+     display: none;
     }
   }
 `;
@@ -67,7 +64,7 @@ export const Container = styled.div`
   gap: 20px;
   align-items: center;
 
-  button{
+  button {
     width: 15px;
     height: 15px;
 
@@ -93,15 +90,15 @@ export const GreenBall = styled.p`
   width: 15px;
   height: 15px;
   position: fixed;
-  top:15px;
+  top: 15px;
   left: 85.5%;
 
-  background: #27AE60;
+  background: #27ae60;
   border-radius: 50%;
-`
+`;
 
 export const LogoHeader = styled.img`
-  @media (max-width: 729px){
+  @media (max-width: 729px) {
     width: 50%;
   }
-`
+`;

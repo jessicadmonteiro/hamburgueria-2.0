@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { api } from "../../../services/api";
 import { useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,15 +7,10 @@ interface iLoginContextProps {
   children: React.ReactNode;
 }
 
-interface iUser {
-  id: string;
-  name: string;
-  email: string;
-}
-
 interface iLoginContext {
   LoginUser: (data: idata) => Promise<void>;
-  user: null | iUser[];
+  products: iProducts[];
+  loading: boolean;
 }
 
 interface idata {
@@ -23,11 +18,21 @@ interface idata {
   password: string;
 }
 
+interface iProducts {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  count: number;
+}
+
 export const ContextLogin = createContext({} as iLoginContext);
 
 export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
+  const [products, setProducts] = useState<iProducts[]>([] as iProducts[]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
 
   async function LoginUser(data: idata) {
     try {
@@ -35,16 +40,64 @@ export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
       window.localStorage.clear();
       window.localStorage.setItem("token", response.data.accessToken);
 
-      setUser(response.data.user);
-
+      GetProducts();
       navigate("/home");
-      
+   
     } catch (error) {
       toast.error("Ops! Algo deu errado")
     }
   }
+
+  async function GetProducts() {
+    const token = window.localStorage.getItem("token");
+
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await api.get("/products", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      setProducts(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    async function autoLogin() {
+      const token = window.localStorage.getItem("token");
+  
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+  
+      try {
+        const response = await api.get("/products", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setProducts(response.data);
+        
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    autoLogin()
+  })
+
   return (
-    <ContextLogin.Provider value={{ LoginUser, user }}>
+    <ContextLogin.Provider value={{ LoginUser, products, loading }}>
       {children}
     </ContextLogin.Provider>
   );

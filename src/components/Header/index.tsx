@@ -12,8 +12,8 @@ function Header() {
   const navigate = useNavigate();
 
   function LogoutUser () {
-    navigate("/");
     window.localStorage.clear();
+    navigate("/");
   }
 
   return (

@@ -35,7 +35,6 @@ function FormLogin() {
         label="Email"
         type="email"
         id="email"
-        placeholder="Digite seu email"
         register={register("email")}
       />
 
@@ -44,7 +43,6 @@ function FormLogin() {
         label="Senha"
         type="password"
         id="password"
-        placeholder="Digite sua senha"
         register={register("password")}
       />
       {errors.password?.message && <ErrorForm>{errors.password.message}</ErrorForm>}

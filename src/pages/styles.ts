@@ -47,9 +47,11 @@ export const ContainerForm = styled.div`
     text-align: center;
 
     margin: 15px auto;
+    margin-bottom: 25px;
 
     color: #999999;
   }
+
 
   @media (max-width: 840px) {
     width: 90%;

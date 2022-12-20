@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Fieldset = styled.fieldset`
+  position: relative;
   display: flex;
   flex-direction: column;
 
@@ -8,7 +9,11 @@ export const Fieldset = styled.fieldset`
 
 
   label{
-    width: 60px;
+    position: absolute;
+    bottom: 33px;
+    left: 20px;
+    height: 15px;
+    
     font-weight: 400;
     font-size: 12px;
     
@@ -16,11 +21,9 @@ export const Fieldset = styled.fieldset`
     color: #999999;
     background-color: #fff;
     
-    padding: 10px;
-    margin: 0 0 -15px 15px;
-
-
-    z-index: 1;
+    margin: 0px;
+    padding: 0px;
+    
   }
 
   input {
@@ -32,10 +35,11 @@ export const Fieldset = styled.fieldset`
 
     padding-left: 20px;
     margin-bottom: 15px;
-  }
 
-  input:focus {
-    border: 2px solid #168821;
+    :valid~label,
+    :focus~label {
+      top: -6px;
+    }
   }
 
 `;
