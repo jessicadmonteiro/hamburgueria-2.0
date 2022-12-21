@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { api } from "../../../services/api";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface iLoginContextProps {
@@ -42,9 +42,8 @@ export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
 
       GetProducts();
       navigate("/home");
-   
     } catch (error) {
-      toast.error("Ops! Algo deu errado")
+      toast.error("Ops! Algo deu errado");
     }
   }
 
@@ -71,30 +70,17 @@ export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
   }
 
   useEffect(() => {
-    async function autoLogin() {
+    async function autoLogin(): Promise<void> {
       const token = window.localStorage.getItem("token");
-  
-      if (!token) {
-        setLoading(false);
-        return;
+
+      if (token) {
+        GetProducts();
+        // navigate("/home");
       }
-  
-      try {
-        const response = await api.get("/products", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-        setProducts(response.data);
-        
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
+      
     }
-    autoLogin()
-  })
+    autoLogin();
+  }, []);
 
   return (
     <ContextLogin.Provider value={{ LoginUser, products, loading }}>
