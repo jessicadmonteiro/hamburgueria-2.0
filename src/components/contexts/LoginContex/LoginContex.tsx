@@ -75,7 +75,7 @@ export const AuthLoginProvider = ({ children }: iLoginContextProps) => {
 
       if (token) {
         GetProducts();
-        // navigate("/home");
+        navigate("/home");
       }
       
     }
